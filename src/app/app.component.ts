@@ -1,13 +1,17 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  templateUrl: './app.component.html', // 👈 Using external HTML
 })
 export class AppComponent {
-  title = 'myapp';
+  logMessages(): void {
+    console.log('🔵 This is a log message.');
+    console.info('🟢 This is an info message.');
+    console.warn('🟠 This is a warning message.');
+    console.error('🔴 This is an error message.');
+    console.debug('⚪ This is a debug message.');
+    console.trace('🧭 This is a trace message.');
+  }
 }
