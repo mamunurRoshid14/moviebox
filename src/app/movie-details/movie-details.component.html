@@ -1,0 +1,24 @@
+<div *ngIf="movieData">
+    <h2>{{ movieData.title }}</h2>
+    <img [src]="'https://image.tmdb.org/t/p/w500' + movieData.poster_path" alt="Poster">
+    <p><strong>Release Date:</strong> {{ movieData.release_date }}</p>
+    <p><strong>Rating:</strong> {{ movieData.vote_average }}</p>
+    <p><strong>Overview:</strong> {{ movieData.overview }}</p>
+    <p><strong>Genres:</strong> {{ genreList }}</p>
+</div>
+
+
+<div>
+    <h2>{{ movieData?.title }}</h2>
+    <p><strong>Overview:</strong> {{ movieData?.overview }}</p>
+    <hr>
+    <h3>Cast</h3>
+    <ul>
+        <li *ngFor="let actor of cast">
+            <strong>{{ actor.name }}</strong> as {{ actor.character }}
+            <img *ngIf="actor.profile_path" [src]="'https://image.tmdb.org/t/p/w92' + actor.profile_path"
+                alt="{{ actor.name }}">
+        </li>
+    </ul>
+
+</div>

@@ -8,14 +8,12 @@
 <div *ngIf="movies.length">
   <h2>Movies</h2>
   <div *ngFor="let movie of movies">
+
+    <a [routerLink]="['/movie', movie.id]">
     <img [src]="'https://image.tmdb.org/t/p/w200' + movie.poster_path" alt="{{movie.title}}" />
-    <h3>{{ movie.title }}</h3>
+    <p>{{ movie.title }}</p>
     <p>{{ movie.overview }}</p>
     <p>Rating: {{ movie.vote_average }}</p>
+    </a>
   </div>
 </div>
-
-
-
-
-
