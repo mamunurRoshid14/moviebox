@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div *ngIf="castData">
+  <h2>{{ castData.name }}</h2>
+  <img *ngIf="castData.profile_path" 
+       [src]="'https://image.tmdb.org/t/p/w185' + castData.profile_path"
+       alt="{{ castData.name }}">
+  <p><strong>Birthday:</strong> {{ castData.birthday }}</p>
+  <p><strong>Place of Birth:</strong> {{ castData.place_of_birth }}</p>
+  <p><strong>Biography:</strong> {{ castData.biography }}</p>
+</div>
+
+</body>
+</html>

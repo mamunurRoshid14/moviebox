@@ -4,21 +4,22 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-
+import { RouterModule } from '@angular/router';
 interface Person {
+  id: number;
   name: string;
   character?: string;
   job?: string;
   profile_path: string | null;
 }
 interface Genre {
-  id: BigInteger;
+  id: number;
   name: string;
 }
 @Component({
   selector: 'app-movie-details',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, HttpClientModule, RouterModule],
   templateUrl: './movie-details.component.html',
   styleUrls: ['./movie-details.component.css']
 })
@@ -61,7 +62,7 @@ fetchMovieCredits() {
   this.http.get(`api/movie/${this.movieId}/credits?language=en-US`, { headers })
     .subscribe((data: any) => {
       this.cast = (data.cast || []).slice(0, 5);
-
+      console.log(this.cast)
     });
 }
 
