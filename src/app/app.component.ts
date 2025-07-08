@@ -13,7 +13,7 @@ export class AppComponent {
   constructor(private http: HttpClient) {}
 
   getMovies(): void{
-    const url = '/movies/changes?page=1';
+    const url = '/api/movie/changes?page=1';
 
     const headers = new HttpHeaders({
       'Authorization': environment.apiKey,
@@ -27,7 +27,7 @@ export class AppComponent {
   }
 
   getCollectionById(): void{
-    const url = '/collections/10?language=en-US';
+    const url = '/api/collection/10?language=en-US';
 
     const headers = new HttpHeaders({
       'Authorization': environment.apiKey,
