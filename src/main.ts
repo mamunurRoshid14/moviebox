@@ -2,7 +2,11 @@ import { enableProdMode } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
 import { environment } from './environments/environment';
+// Import provideRouter from @angular/router
+import { provideRouter } from '@angular/router';
 
+// Import your routes — adjust the path if needed
+import { routes } from './app/app.routes';
 if (environment.production) {
   enableProdMode();
 
@@ -15,5 +19,6 @@ if (environment.production) {
   console.trace = function () {};
 }
 
-bootstrapApplication(AppComponent)
-  .catch(err => console.error(err));
+bootstrapApplication(AppComponent, {
+  providers: [provideRouter(routes)]
+});

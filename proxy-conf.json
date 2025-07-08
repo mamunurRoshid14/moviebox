@@ -1,11 +1,29 @@
 {
-  "/api": {
-    "target": "https://api.themoviedb.org/3",
+  "/movies": {
+    "target": "https://api.themoviedb.org/3/movie/",
     "secure": true,
     "changeOrigin": true,
     "logLevel": "debug",
     "pathRewrite": {
-      "^/api": ""
+      "^/movies": ""
+    }
+  },
+  "/collections": {
+    "target": "https://api.themoviedb.org/3/collection/",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/collections": ""
+    }
+  },
+  "/home": {
+    "target": "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc",
+    "secure": true,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/home": ""
     }
   }
 }

@@ -1,20 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpClientModule } from '@angular/common/http';
+import { environment } from 'C:/Users/mamun/Documents/myapp/src/environments/environment';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HttpClientModule],
+  imports: [HttpClientModule,RouterModule],
   templateUrl: './app.component.html',
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   constructor(private http: HttpClient) {}
 
-  ngOnInit() {
-    const url = '/api/movie/changes?page=1';
+  getMovies(): void{
+    const url = '/movies/changes?page=1';
 
     const headers = new HttpHeaders({
-      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxNTYyNjViMTA3NzFkNzI3Nzk4NDQzZWE2NWExNzZmNyIsIm5iZiI6MTc1MTg4NjY3Ny4zNTgsInN1YiI6IjY4NmJhYjU1YzhlYzE3NDVhM2NlZTc4ZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.W9FAPBH8zc7TMJ-WMvq1TYsESJs_l9OoQCz0Ptpj8AY',
+      'Authorization': environment.apiKey,
       'accept': 'application/json'
     });
 
@@ -23,6 +25,21 @@ export class AppComponent implements OnInit {
       error: (error) => console.error('Error fetching TMDb data:', error)
     });
   }
+
+  getCollectionById(): void{
+    const url = '/collections/10?language=en-US';
+
+    const headers = new HttpHeaders({
+      'Authorization': environment.apiKey,
+      'accept': 'application/json'
+    });
+
+    this.http.get(url, { headers }).subscribe({
+      next: (response) => console.log('TMDb API response:', response),
+      error: (error) => console.error('Error fetching TMDb data:', error)
+    });
+  }
+
 
   logMessages(): void {
     console.log('🔵 This is a log message.');
@@ -35,3 +52,9 @@ export class AppComponent implements OnInit {
   title="Myapp"
 }
 
+
+/*
+
+
+
+*/
