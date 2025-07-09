@@ -1,19 +1,51 @@
-<h1>Movie Filter</h1>
+<div>
+  <h1>Movie Search</h1>
 
-<input type="text" [(ngModel)]="keyword" placeholder="Enter keyword (e.g., cap)" />
-<input type="number" [(ngModel)]="voteAverage" placeholder="Max vote average (e.g., 2.5)" />
-<input type="number" [(ngModel)]="year" placeholder="Year (e.g., 2000)" />
-<button (click)="searchMovies()">Search</button>
+  <!-- Autocomplete Search -->
+  <p>
+    Search By name: 
+    <input type="text" 
+           [(ngModel)]="keyword" 
+           (input)="onInput($event)" 
+           (keydown)="onKeydown($event)"
+           placeholder="Type movie name..." 
+           [ngModelOptions]="{standalone: true}"
+           autocomplete="off" />
+    <button (click)="searchMovies()">Search Movies</button>
+  </p>
+  <ul *ngIf="suggestions.length > 0" class="autocomplete-dropdown">
+    <li *ngFor="let movie of suggestions" 
+        (click)="selectMovie(movie)"
+        class="autocomplete-item">
+      {{ movie.original_title }}
+    </li>
+  </ul>
 
-<div *ngIf="movies.length">
+  <!-- Filter Inputs -->
+  <p>
+    Filter by Vote Average: 
+    <input type="number" [(ngModel)]="voteAverage" placeholder="Min vote average (e.g., 7)" />
+  </p>
+  <p>
+    Filter by Year: 
+    <input type="number" [(ngModel)]="year" placeholder="Release year (e.g., 1997)" />
+  </p>
+  <button (click)="filterMovies()">Filter Movies</button>
+
+  <!-- Movie List -->
+  <div *ngIf="movies.length">
   <h2>Movies</h2>
   <div *ngFor="let movie of movies">
 
     <a [routerLink]="['/movie', movie.id]">
-    <img [src]="'https://image.tmdb.org/t/p/w200' + movie.poster_path" alt="{{movie.title}}" />
-    <p>{{ movie.title }}</p>
-    <p>{{ movie.overview }}</p>
-    <p>Rating: {{ movie.vote_average }}</p>
+    <img [src]="'https://image.tmdb.org/t/p/w200' + movie['poster_path']" alt="{{movie['title']}}" />
+    <p>{{ movie['title'] }}</p>
+    <p>Release Date: {{ movie['release_date']  }}</p>
+    <p>{{ movie['overview'] }}</p>
+    <p>Rating: {{ movie['vote_average'] }}</p>
     </a>
   </div>
 </div>
+</div>
+
+

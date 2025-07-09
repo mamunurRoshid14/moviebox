@@ -4,7 +4,7 @@ import { MovieDetailsComponent } from './movie-details/movie-details.component';
 import { CastDetailsComponent } from './cast-details.component';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'movie/:id', component: MovieDetailsComponent },
   { path: 'person/:id', component: CastDetailsComponent },
 ];
